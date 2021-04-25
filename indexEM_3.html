@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - Class 3</title>
+
+		<link rel="stylesheet" href="plugin/reveal.css">
+		<link rel="stylesheet" href="plugin/black2.css" id="theme">
+        <link rel="stylesheet" href="plugin/monokai.css">
+        <link rel="stylesheet" href="plugin/title-footer.css">
+       
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+
+                <!-- Slides are separated by three dashes (quick 'n dirty regular expression) -->
+                <section data-markdown data-separator="\n---\n" data-separator-vertical="^\n--\n$">
+                    <script type="text/template">
+                        <!-- .slide: style="text-align: left;" -->
+                        ## Empirical Macroeconomics
+                        ### Francesco Franco - Nova SBE
+                        #### T4 2021 
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+                        ### Fundamental shocks: invertible MA
+
+                        #### A difference equation interpretation
+                        
+                        Consider an invertible $MA(1)$
+
+                        $$Y_{t}=\mu+\epsilon_{t}+\theta\epsilon_{t-1}$$
+                        
+                        you are solving for $\epsilon_{t}$
+
+                        $$\epsilon_{t}=-\theta\epsilon_{t-1}+\left(Y_{t}-\mu\right)$$
+                        
+                        that you
+                        can solve backwards provided $\left|\theta\right|< 1$
+                        
+                        $$\epsilon_{t}=\left(1+\theta L\right)^{-1}\left(Y_{t}-\mu\right)$$
+                        
+                        interpretation: past values of $Y_{t}$ contains $\epsilon_{t}$.
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Non-Fundamental shocks: non-Invertible MA
+
+                        #### A difference equation interpretation
+                        
+                        Consider a non invertible $MA(1)$
+                        $$\epsilon_{t}=-\theta\epsilon_{t-1}+\left(Y_{t}-\mu\right)$$ with
+                        $\left|\theta\right|\geq1$ .Forward one period
+                        $$\epsilon_{t+1}=-\theta\epsilon_{t}+\left(Y_{t+1}-\mu\right)$$ and
+                        solve for $\epsilon_{t}$
+                        $$\epsilon_{t}=-\frac{1}{\theta}\epsilon_{t+1}+\frac{1}{\theta}\left(Y_{t+1}-\mu\right)$$
+                        $$\epsilon_{t}=\left(1+\frac{1}{\theta}F\right)^{-1}\frac{1}{\theta}\left(FY_{t}-\mu\right)$$
+                        where $Fx_{t}=x_{t+1}$. You need future values of $Y_{t}$ to recover
+                        $\epsilon_{t}$.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Invertible Moving Average
+
+                        #### MA and VAR
+                        
+                        -   More: for any invertible $MA(1)$ there is a non-invertible $MA(1)$
+                            and vice-versa.
+                        
+                        -   Take the above invertible $MA(1)$
+                            $$Y_{t}=\mu+\epsilon_{t}+\theta\epsilon_{t-1}$$
+                        
+                        -   The moments are $E\left(Y_{t}\right)=\mu$,
+                            $E\left(Y_{t}-\mu\right)^{2}=\left(1+\theta^{2}\right)\sigma^{2}$
+                            and
+                            $E\left(Y_{t}-\mu\right)\left(Y_{t-1}-\mu\right)=\theta\sigma^{2}$.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Non-Invertible Moving Average
+
+                        #### MA and VAR
+                        
+                        -   Consider a seemingly different non invertible $MA(1)$
+
+                            <span>
+                                \[\begin{aligned}
+                                Y_{t}=\mu+\tilde{\epsilon}_{t}+\tilde{\theta}\tilde{\epsilon}_{t-1}
+                                \end{aligned} \]
+                            <span>
+                        
+                        -   The moments are $E\left(Y_{t}\right)=\mu$,
+                            $E\left(Y_{t}-\mu\right)^{2}=\left(1+\tilde{\theta}^{2}\right)\tilde{\sigma}^{2}$
+                            and
+                            $E\left(Y_{t}-\mu\right)\left(Y_{t-1}-\mu\right)=\tilde{\theta}\tilde{\sigma}^{2}$.
+                        
+                        -   Then $$\theta=\tilde{\theta}^{-1}$$
+                            $$\sigma^{2}=\tilde{\theta}^{2}\tilde{\sigma}^{2}$$
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+                        
+                        ### Non-Invertible Vector Moving Average
+
+                        #### VMA
+                        
+                        The VMA $Y_{t}=C(L)\epsilon_{t}$ is invertible if and only if the roots
+                        of the polynomial $|C(z)|=0$ lie outside the unit circle
+                        
+                        Example
+                        
+                        <span>
+                            \[\begin{aligned}
+                            \left(\begin{array}{c}
+                            Y_{1t}\\
+                            Y_{2t}
+                            \end{array}\right)=\left(\begin{array}{cc}
+                            1 & L\\
+                            0 & \theta-L
+                            \end{array}\right)\left(\begin{array}{c}
+                            \epsilon_{1t}\\
+                            \epsilon_{2t}
+                            \end{array}\right)
+                            \end{aligned} \]
+                        <span>
+                            
+                        the $det\left(C(z)\right)=\theta-z$ is zero for
+                        $\theta=z$. Therefore for invertibility $|z|>1$ which is satisfied if
+                        $|\theta|>1$.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Recovering the shocks
+                        
+                        -   When we estimate a VAR we always recover the innovations of the
+                            invertible MA, or the Wold decomposition innovations.
+                        
+                        -   What if our model/theory implies non-fundamental shocks?
+                        
+                        -   $\epsilon_{t}$ can be non fundamental for $Y_{t}$. But suppose it is
+                            fundamental for another variable ?
+                        
+                        -   Fundamentalness is not a property of the shock but the system, an information issue.
+                        
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### An example
+
+                        #### Non-fundamentalness and News Shocks (Forni et al.)
+                        
+                        Consider a simple asset price model. We assume the total factor
+                        productivity $a_{t}$ follows $$a_{t}=a_{t-1}+\epsilon_{t-2}+v_{t}$$
+                        Where $\epsilon_{t}$ is a news shock and $v_{t}$ is a shock affecting
+                        TFP on impact. The agents observe the shock $\epsilon_{t}$ at time $t$
+                        and react to it immediately while the shock will affect TFP only at time
+                        $t+2$.
+                        
+
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Non-fundamentalness and News Shocks (Forni et al.)
+                        
+                        The RA maximizes $$E_{t}\sum_{t=0}^{\infty}\beta^{t}c_{t}$$ s.t.
+                        $$c_{t}+p_{t}n_{t+1}=\left(p_{t}+a_{t}\right)n_{t}$$
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Non-fundamentalness and News Shocks (Forni et al.)
+
+                        FOC
+                        $$\lambda_{t}=1$$
+                        
+                        $$\lambda_{t}p_{t}=\beta E_{t}\lambda_{t+1}\left[p_{t+1}+a_{t+1}\right]$$
+                        Combining we get
+                        $$p_{t}=\sum_{j=1}^{\infty}\beta^{j}E_{t}\left[a_{t+j}\right]$$
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Non-fundamentalness and News Shocks (Forni et al.)
+                        
+                        Now
+                        using our DGP on productivity $a_{t}=a_{t-1}+\epsilon_{t-2}+v_{t}$ becomes
+                        $$E_{t}a_{t+1}=a_{t}+\epsilon_{t-1}$$
+                        $$E_{t}a_{t+2}=E_{t}a_{t+1}+\epsilon_{t}=a_{t}+\epsilon_{t-1}+\epsilon_{t}$$
+                        $$E_{t}a_{t+3}=E_{t}a_{t+2}=a_{t}+\epsilon_{t-1}+\epsilon_{t}$$ and so
+                        on. Substitute in the price
+                        $p_{t}=\beta\sum_{j=1}^{\infty}\beta^{j-1}E_{t}\left[a_{t+j}\right]$ 
+
+                        $$p_{t}=\frac{\beta}{1-\beta}a_{t}+\frac{\beta}{1-\beta}\left(\beta\epsilon_{t}+\epsilon_{t-1}\right)$$
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        
+                        #### Non-fundamentalness and News Shocks (Forni et al.)
+                        
+                        Now assume we observe $p_{t}$ and $a_{t}$. Take the first difference and
+                        obtain the VMA:
+                        
+                        <span>
+                            \[\begin{aligned}
+                            \left(\begin{array}{c}
+                            \Delta a_{t}\\
+                            \Delta p_{t}
+                            \end{array}\right)=\left(\begin{array}{cc}
+                            L^{2} & 1\\
+                            \frac{\beta^{2}}{1-\beta}+\beta L & \frac{\beta}{1-\beta}
+                            \end{array}\right)\left(\begin{array}{c}
+                            \epsilon_{t}\\
+                            v_{t}
+                            \end{array}\right)
+                            \end{aligned} \]
+                        <span>
+                            
+                        the polynomial to be solved is determinant is
+                        $\frac{\beta}{1-\beta}z^{2}-\frac{\beta^{2}}{1-\beta}-\beta z=0$ and the
+                        roots are $z=1$ and $z=-\beta$. Given $|\beta|< 1$ the shocks are
+                        non-fundamental for the variables $\Delta a_{t}$ and $\Delta p_{t}$.
+                        
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### State Space Representation
+
+                        #### Economic Models as state space models
+                        
+                        Most Dynamic macro models can be casted in a $VMA$ but also into a State
+                        Space representation: $$S_{t+1}=AS_{t}+B\eta_{t+1}$$
+                        $$X_{t}=\tilde{C}S_{t}$$ where $S_{t}$ are the states and $X_{t}$ the
+                        observations. We can re-write the SSM as
+                        
+                        $$S_{t}=AS_{t-1}+B\eta_{t}$$ $$X_{t}=CS_{t-1}+D\eta_{t}$$ where $S_{t}$
+                        is a vector of states, $X_{t}$ is a vector of observables and $\eta_{t}$
+                        are shocks.
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### State Space Representation
+
+                        #### Our example
+                        
+                        The previous example $S_{t}=AS_{t-1}+B\eta_{t}$ is
+
+                        <span>
+                            \[\begin{aligned}
+                            \left(\begin{array}{c}
+                            a_{t}\\
+                            \epsilon_{t}\\
+                            \epsilon_{t-1}
+                            \end{array}\right)=\left(\begin{array}{ccc}
+                            1 & 0 & 1\\
+                            0 & 0 & 0\\
+                            0 & 1 & 0
+                            \end{array}\right)\left(\begin{array}{c}
+                            a_{t-1}\\
+                            \epsilon_{t-1}\\
+                            \epsilon_{t-2}
+                            \end{array}\right)+\left(\begin{array}{cc}
+                            0 & 1\\
+                            1 & 0\\
+                            0 & 0
+                            \end{array}\right)\left(\begin{array}{c}
+                            \epsilon_{t}\\
+                            v_{t}
+                            \end{array}\right)
+                            \end{aligned} \]
+                        <span>
+                            
+                        and $X_{t}=CS_{t-1}+D\eta_{t}$ is
+
+                        <span>
+                            \[\begin{aligned}
+                            \left(\begin{array}{c}
+                            a_{t}\\
+                            p_{t}
+                            \end{array}\right)=\left(\begin{array}{ccc}
+                            1 & 0 & 1\\
+                            \frac{\beta}{1-\beta} & \frac{\beta}{1-\beta} & \frac{\beta}{1-\beta}
+                            \end{array}\right)\left(\begin{array}{c}
+                            a_{t-1}\\
+                            \epsilon_{t-1}\\
+                            \epsilon_{t-2}
+                            \end{array}\right)+\left(\begin{array}{cc}
+                            0 & 1\\
+                            \frac{\beta^{2}}{1-\beta} & \frac{\beta}{1-\beta}
+                            \end{array}\right)\left(\begin{array}{c}
+                            \epsilon_{t}\\
+                            v_{t}
+                            \end{array}\right)
+                            \end{aligned} \]
+                        <span>
+                        
+                        
+
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Non Fundamentnalness in the SS model
+
+                        #### An information issue
+                        
+                        Consider $D$ to be square: number of observations is equal to number of
+                        structural shocks $$\eta_{t}=D^{-1}\left(X_{t}-CS_{t-1}\right)$$
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Non Fundamentnalness in the SS model
+
+                        #### An information issue
+                        
+                        Plugging $\eta$ into the state equation:
+                        
+                        $$S_{t}=AS_{t-1}+BD^{-1}\left(X_{t}-CS_{t-1}\right)$$
+                        
+                        $$S_{t}=\left(A-BD^{-1}C\right)S_{t-1}+BD^{-1}X_{t}$$ solve backwards
+                        $$\left(I-\left(A-BD^{-1}C\right)L\right)S_{t}=BD^{-1}X_{t}$$
+                        $$S_{t}=\left(I-\left(A-BD^{-1}C\right)L\right)^{-1}BD^{-1}X_{t}$$
+                        provided the eigenvalues of$A-BD^{-1}C$ all be strictly less than one in
+                        modulus. Then the past of $X_{t}$ reveals $S_{t}$. The states are
+                        fundamental for $X_{t}$.
+                        
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Non Fundamentnalness in the SS model
+
+                        #### An information issue: shocks are non-fundamental wrt to observed variables
+                        
+                        In our example
+                        
+                        <span>
+                            \[\begin{aligned}
+                            A-BD^{-1}C=\left(\begin{array}{ccc}
+                            1 & 0 & 1\\
+                            0 & 0 & 0\\
+                            0 & 1 & 0
+                            \end{array}\right)-\left(\begin{array}{cc}
+                            0 & 1\\
+                            1 & 0\\
+                            0 & 0
+                            \end{array}\right)\left(\begin{array}{cc}
+                            -\frac{1}{\beta} & \frac{1-\beta}{\beta^{2}}\\
+                            1 & 0
+                            \end{array}\right)\left(\begin{array}{ccc}
+                            1 & 0 & 1\\
+                            \frac{\beta}{1-\beta} & \frac{\beta}{1-\beta} & \frac{\beta}{1-\beta}
+                            \end{array}\right)
+                            \end{aligned} \]
+                        <span>
+                            
+                        the eigenvalues are $(-\frac{1}{\beta},1)$, the condition is not
+                        respected as expected, therefore the past $X_{t}$ do not reveal the
+                        $S_{t}$.
+
+                        ---
+
+                       <!-- .slide: style="text-align: left;" -->
+
+                        ### Non Fundamentnalness in the SS model
+
+                        #### An information issue
+                        
+                        Therefore the condition (ABCD condition) that $\left(A-BD^{-1}C\right)$
+                        : $$X_{t}=CS_{t-1}+D\eta_{t}$$
+                        $$X_{t}=C\left(I-\left(A-BD^{-1}C\right)L\right)^{-1}BD^{-1}X_{t-1}+u_{t}$$
+                        $$X_{t}=\sum_{j=1}^{\infty}\Phi_{j}X_{t-j}+u_{t}$$ is a sufficient
+                        condition for a VAR on observables to have innovations that map directly
+                        back into structural shocks in population. The variance of the residuals is
+                        $\Sigma_{u}=D\Sigma_{\eta}D'$ and you can apply the identification
+                        restrictions to recover the structural shocks.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### DFM-FAVAR
+
+                        #### Solving the Information problem using factors?
+                        
+                        What if the ABCD condition is not respected? The idea is to have
+                        sufficient information to reveal the states. Use the state equation to
+                        obtain the shocks: $$S_{t}=AS_{t-1}+B\eta_{t}$$ and notice that the
+                        structural shocks are always fundamental to the states. If you could
+                        observe the states you would simply run a VAR in the states and recover
+                        the shocks. Suppose $B^{-1}$ exists (almost always, here left inverse)
+                        $$\eta_{t}=B^{-1}S_{t}-B^{-1}AS_{t-1}$$ Notice that in the case of the
+                        Forni example above $B$ is not invertible as the State Space
+                        representation requires three states (1 observable $a_{t}$ and 2
+                        unobsrvables $\epsilon_{t}$and $\epsilon_{t-1}$) . We need more
+                        informaton and $B^{-1}$ must exist.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Solving the Information problem using the states
+                        
+                        Plug into the observation the shocks you recover from the state equation
+                        $$X_{t}=CS_{t-1}+D\eta_{t}$$
+                        $$X_{t}=CS_{t-1}+D(B^{-1}S_{t}-B^{-1}AS_{t-1})$$
+                        $$X_{t}=\left(DB^{-1}+\left(C-DB^{-1}A\right)L\right)S_{t}$$ Write the
+                        previous equation as $$X_{t}=\Lambda F_{t}$$ where
+                        $\Lambda=\left[DB^{-1}\ C-DB^{-1}A\right]$ and
+                        $F_{t}=\left(S_{t}'\mbox{ }S_{t-1}'\right)'$. Which is to underline the
+                        connection between the states and what are called factors. The idea of
+                        the FAVAR is to measure the unobserved states with factors and run a VAR
+                        with factors and observed variables.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+                        
+                        #### Solving the Information problem using the states
+                        
+                        How to get an estimate of the states? Using the factors $F$ as states $S$:
+
+                        The two notations in parallel:
+
+                                              
+                        DFM-SSM:
+
+                        `$$F_{t}=\Psi F_{t-1}+G\eta_{t}\ \ \ \ \ \ \ \ \ \ \ S_{t}=AS_{t-1}+B\eta_{t}$$`
+                        
+                        
+                        DFM-SSM:
+
+                        `$$X_{t}=\mathcal{\Lambda}F_{t}\ \ \ \ \ \ \ \ \ \ \ X_{t}=\left(DB^{-1}+\left(C-DB^{-1}A\right)L\right)S_{t}$$`
+                        
+                                               
+                        $\Lambda$ is usually called the dynamic factor loading.
+
+                        ---
+
+                        
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### DFM
+
+                        #### Dynamic Factors Models (DFM)
+                        
+                        -   small number of unobserved common dynamic factors that produce the
+                            observed comovements of economic time series.
+                        
+                        -   common dynamic factors are driven by the common structural economic
+                            shock
+                        
+                        -   hundreds of economic time series variables that potentially contain
+                            information about these underlying shocks.
+                        
+
+                        ---
+
+                       
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### DFM
+
+                        #### Static Form
+                        
+                        We assume that the variables `$\mathcal{X}_{t}$` are a function of a small
+                        number of unobservables states. In the DF literature the
+                        observables are usually mesured with noise $e_{t}$ and the states are
+                        factors $F_{t}$.
+                        `$$\mathcal{X}_{t}=\mathcal{\Lambda}F_{t}+e_{t}$$`
+                        `$$F_{t}=\Psi(L)F_{t-1}+G\eta_{t}$$`
+                        
+                        $\Lambda$ is usually called the dynamic factor loading. Assume for
+                        simplicity that the $e_{t}$ to be $i.i.d.$ uncorrelated across series.
+                        
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Principal Components
+
+                        #### Extracting the factors
+                        
+                        How do you estimate the factors and loadings? Assume one factor $F_{t}$.
+                        The the cross-sectional average
+                        `$$\frac{1}{N}\sum_{i=1}^{N}\mathcal{X}_{it}=\bar{\mathcal{X}_{t}}=\bar{\Lambda}F_{t}+\bar{e}_{t}$$`
+                        given our assumption on $e_{it}$ we have `$\bar{e}_{t}\rightarrow0$` which
+                        implies that `$\bar{\mathcal{X}_{t}}=\bar{\Lambda}F_{t}$`. In other words
+                        if `$\bar{\Lambda}\neq0$ $\mathcal{X}_{t}$` estimates $F_{t}$ up to a
+                        scale.
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Principal Components
+
+                        #### The principal components normalization
+
+                        Under the PC normalization the columns of $\Lambda$ are orthogonal and
+                        scaled to have unit norm
+                        
+                        `$$N^{-1}\Lambda'\Lambda=I_{r}$$`
+                        
+                        and
+                        
+                        `$$E\left[F_{t}F_{t}'\right]\,is\,diagonal$$` 
+                        
+                        using this weighted average
+                        (instead of the unweighted average)
+
+                        `$$N^{-1}\Lambda'\mathcal{X}_{t}=N^{-1}\Lambda'\Lambda F_{t}$$`
+                        
+                        you get
+                        the factors. But how to find the loadings?
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Principal Components
+
+                        #### Estimation of Factors: principal components
+
+                        Take the filtered data (standardized to have sample mean zero and unit
+                        standard deviation)
+
+                        The estimators of $F_{t}$ and $\Lambda$ solve the minimization problem
+                        `$$\min_{\left\{ F_{i}\right\} _{i=1}^{T},\Lambda}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]$$`
+                        subject to `$N^{-1}\Lambda'\Lambda=I_{r}$`.
+
+                        Under our simplified assumptions
+                        `$$\hat{F}_{t}=N^{-1}\hat{\Lambda}'\mathcal{X}_{t}$$` and `$\hat{\Lambda}$`
+                        is the matrix of eigenvectors of the sample variance matrix of
+                        `$\mathcal{X}_{t}$`. (In more genenral cases like missing values you need to solve the minimization.)
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+    
+
+                        #### Estimation of Factors: principal components
+
+                        The estimators of $F_{t}$ and $\Lambda$ solve the minimization
+                            problem
+                            `$$\min_{F_{t}}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]$$`
+                            subject to `$N^{-1}\Lambda'\Lambda=I_{r}$`.
+                            Expand the terms on the RHS
+                            `$$\left(NT\right)^{-1}\sum_{t=1}^{T}\left(\mathcal{X}_{t}'\mathcal{X}_{t}-\mathcal{X}_{t}'\Lambda F_{t}-F_{t}'\Lambda'\mathcal{X}_{t}+F_{t}'\Lambda'\Lambda F_{t}\right)$$`
+
+                        to get gradient with respect to $F_{t}$, you just need the derivative every
+                        $t$
+                        `$$N^{-1}(\Lambda'\Lambda F_{t}+\Lambda'\Lambda F_{t})-N^{-1}\Lambda'\mathcal{X}_{t}-N^{-1}\Lambda'\mathcal{X}_{t}=0$$`
+                        `$$F_{t}=(\Lambda'\Lambda)^{-1}\Lambda'\mathcal{X}_{t}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Estimation of Factors: principal components
+
+                        Now the gradient with respect to $\Lambda$ of
+                        `$$\min_{\Lambda}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]-S\left[N^{-1}\Lambda'\Lambda-I_{r}\right]$$`
+
+                        concentrate out $F_{t}$ from previous step
+                        equivalent to maximize wrt to $\Lambda$
+                        `$$Tr(\Lambda'\mathcal{X}'\mathcal{X}\Lambda)-S\left[N^{-1}\Lambda'\Lambda-I_{r}\right]$$`
+                        Foc `$$\frac{\mathcal{X}'\mathcal{X}}{N}\Lambda=S\Lambda$$`
+                        `$$N^{-1}\Lambda'\Lambda=I_{r}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### BBE
+
+                        #### Motivating the FAVAR Structure: An Example
+
+                        Backward-looking model as an example (Supply and Demand):
+                        `$$\begin{aligned}
+                        \pi_{t} & =\delta\pi_{t-1}+\kappa\left(y_{t-1}-y_{t-1}^{n}\right)+s_{t}\\
+                        y_{t} & =\phi y_{t-1}-\psi\left(R_{t-1}-\pi_{t-1}\right)+d_{t}\\
+                        y_{t}^{n} & =\rho y_{t-1}^{n}+\eta_{t}\\
+                        s_{t} & =\alpha s_{t-1}+\nu_{t}\end{aligned}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### SVAR/FAVAR
+
+                        #### Motivating the FAVAR Structure: An Example
+
+                        The monetary policy authority follows the Taylor Rule
+                        $$R_{t}=\beta\pi_{t}+\gamma\left(y_{t}-y_{t}^{n}\right)+\epsilon_{t}^{r}$$
+                        Monetary policy has two dimensions:
+
+                        1.  systematic: rule
+
+                        2.  unexpected $\epsilon_{t}$
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        #### Motivating the FAVAR Structure: An Example
+
+                        The model can be casted in State Space Form: `$$\left[\begin{array}{c}
+                        F_{t}\\
+                        Y_{t}
+                        \end{array}\right]=\Phi(L)\left[\begin{array}{c}
+                        F_{t-1}\\
+                        Y_{t-1}
+                        \end{array}\right]+\epsilon_{t}$$` where
+                        `$\Phi=\begin{bmatrix}\rho & 0 & 0 & 0 & 0\\
+                        0 & \alpha & 0 & 0 & 0\\
+                        -\kappa & \alpha & \delta & \kappa & 0\\
+                        0 & 0 & \psi & \phi & -\psi\\
+                        \gamma\psi & \beta\alpha & \left(\beta\delta+\gamma\psi\right) & \left(\beta\kappa+\gamma\phi\right) & -\left(\beta\kappa+\gamma\rho\right)
+                        \end{bmatrix}$ and $\epsilon_{t}=\begin{bmatrix}1 & 0 & 0 & 0\\
+                        0 & 1 & 0 & 0\\
+                        0 & 1 & 0 & 0\\
+                        0 & 0 & 1 & 0\\
+                        -\gamma & \beta & \gamma & 1
+                        \end{bmatrix}\begin{bmatrix}\eta_{t}\\
+                        v_{t}\\
+                        d_{t}\\
+                        \epsilon_{t}^{r}
+                        \end{bmatrix}$` and
+                        `$\left(F_{t}'\mbox{ }Y_{t}'\right)'=\left(y_{t}^{n}\mbox{ }s_{t}\mbox{ }\pi_{t}\mbox{ }y_{t}\mbox{ }R_{t}\right)'$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                    
+                        #### Motivating the FAVAR Structure: An Example
+
+                        The division between what you observe and what you do not observe
+                        determine if the model has unobserved states. If yes we know there are
+                        potential information issues (discuss $\eta$ shock) and we treat the
+                        unobserved states as factors. Assume the large data set is related to
+                        the variables in our model as
+                        `$$\mathcal{X}_{t}=\Lambda\left(y_{t}^{n}\mbox{ }s_{t}\mbox{ }\pi_{t}\mbox{ }y_{t}\mbox{ }R_{t}\right)'+e_{t}$$
+                        and treat $$\begin{aligned}
+                        F_{t} & =\left(y_{t}^{n}s_{t} \pi_{t}y_{t}\right)'\\
+                        \mbox{ }Y_{t} & =\left(R_{t}\right)'\end{aligned}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                       
+                        #### SDFM and FAVAR
+
+                        Take the DFM `$$\mathcal{X}_{t}=\Lambda F_{t}+e_{t}$$`
+                        `$$F_{t}=\Psi(L)F_{t-1}+G\eta_{t}$$` Consider the case where you observe
+                        one factor without error (the interest rate in BBE):
+
+                        `$$\mathcal{X}_{t}=\Lambda\left[\begin{array}{c}
+                        Y_{t}\\
+                        F_{t}
+                        \end{array}\right]+\left[\begin{array}{c}
+                        0\\
+                        e_{t}
+                        \end{array}\right]$$` 
+                        
+                        then
+                        
+                        `$$\left[\begin{array}{c}
+                        Y_{t}\\
+                        F_{t}
+                        \end{array}\right]=\Phi(L)\left[\begin{array}{c}
+                        Y_{t-1}\\
+                        F_{t-1}
+                        \end{array}\right]+G\eta_{t}$$` 
+                        
+                        which is a reduced form VAR. The
+                        structural identification follows the SVAR literature by looking for a
+                        matrix $A$ such that `$\eta_{t}=A\epsilon_{t}$` where $\epsilon_{t}$are
+                        the structural shocks.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                      
+                        #### Motivating the FAVAR Structure: An Example
+
+                        In the paper BBE have a very large dataset. In their slow-R-fast scheme,
+                        monetary policy shocks or news/financial shocks are assumed not to
+                        affect slow-moving variables like output, employment, and price indexes
+                        within a period, monetary policy responds within a period to shocks to
+                        slow-moving variables but not to news or financial shocks, and
+                        fast-moving variables (like asset prices) respond to all shocks,
+                        including news/financial shocks that are reflected only in those
+                        variables. Let $s$ denote slow moving variables and $f$ fast moving
+                        variables.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                      
+
+                        #### slow-R-fast scheme
+
+                        Then the Bernanke, Boivin, and Eliasz (2005) implementation of the
+                        slow-R-fast identification scheme is
+                        `$$\begin{bmatrix}\mathcal{X}_{t}^{s}\\
+                        \mathcal{X}_{t}^{f}
+                        \end{bmatrix}=\begin{bmatrix}\Lambda_{ss} & 0 & 0\\
+                        \Lambda_{fs} & \Lambda_{fr} & \Lambda_{ff}
+                        \end{bmatrix}\begin{bmatrix}F_{t}^{s}\\
+                        R_{t}\\
+                        F_{t}^{f}
+                        \end{bmatrix}+e_{t}$$` `$$\begin{bmatrix}F_{t}^{s}\\
+                        R_{t}\\
+                        F_{t}^{f}
+                        \end{bmatrix}=\Phi(L)\begin{bmatrix}F_{t-1}^{s}\\
+                        R_{t-1}\\
+                        F_{t-1}^{f}
+                        \end{bmatrix}+\begin{bmatrix}\eta_{t}^{s}\\
+                        \eta_{t}^{r}\\
+                        \eta_{t}^{f}
+                        \end{bmatrix}$$` and `$$\begin{bmatrix}\eta_{t}^{s}\\
+                        \eta_{t}^{r}\\
+                        \eta_{t}^{f}
+                        \end{bmatrix}=\begin{bmatrix}A_{ss} & 0 & 0\\
+                        A_{rs} & 1 & 0\\
+                        A_{fs} & A_{fr} & A_{ff}
+                        \end{bmatrix}\begin{bmatrix}\epsilon_{t}^{s}\\
+                        \epsilon_{t}^{r}\\
+                        \epsilon_{t}^{f}
+                        \end{bmatrix}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                      
+
+                        #### Empirical Implementation
+
+                        Let us go to the code.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### Autocorrelation
+
+                        Tipycally the noise can be serially correlated
+                        $$e_{t}=D(L)e_{t-1}+\zeta_{t}$$ where each element of $\zeta_{t}$,
+                        $\zeta_{it}$ is i.i.d. $N\left(0,\sigma_{\zeta_{i}}^{2}\right)$,
+                        i=1\...N with $E\zeta_{it}\zeta_{js}$ for all $s$ if $j\neq i$. You can
+                        rewrite our DFM as
+                        `$$\mathcal{X}_{t}=\mathcal{\tilde{\Lambda}}F_{t}+D(L)\mathcal{X}_{t-1}+\zeta_{t}$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### The general DFM model
+
+                        To sumarize the DFM is
+                        `$$\mathcal{X}_{t}=\mathcal{\tilde{\Lambda}}F_{t}+D(L)\mathcal{X}_{t-1}+\zeta_{t}$$`
+                        `$$F_{t}=\Psi(L)F_{t-1}+G\eta_{t}$$` with $E\eta_{t}\zeta_{t-k}=0$ for all
+                        $k\geq0$
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### Extracting the factors
+
+                        The variance of the data is
+                        `$$\Sigma_{\mathcal{\tilde{X}}}=\mathcal{\tilde{\Lambda}}\Sigma_{F}\mathcal{\tilde{\Lambda}}'+\Sigma_{\zeta}$$`
+                        where you have to remember that the dimension of $\mathcal{X}_{t}$ is
+                        $N$ and of $F$ is $r\ll N$. Notice also that $\tilde{\Lambda}$ and $F$
+                        are not separately indentfied. Inserting a nonsingular matrix $H$ and
+                        replacing $\tilde{\Lambda}$ by $\tilde{\Lambda}H^{-1}$ and $F$ by $HF$
+                        you obtain the same variance of the data. This ambiguity is handled by
+                        adopting an arbitrary statistical normalization which (implicitly)
+                        imposes an arbitrary H.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### Estimation of Factors: Kalman
+
+                        -   The unknown coefficients of the DFM (with additional lag length and
+                            normalization restrictions) can be estimated by Gaussian maximum
+                            likelihood using the Kalman Filter.
+
+                        -   When n is very large, however, this method is computationally
+                            burdensome.
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### Estimation of Factors: principal components
+
+                        -   Take the filtered data (standardized to have sample mean zero and
+                            unit standard deviation)
+
+                        -   The estimators of $F_{t}$ and solve the minimization problem
+                            `$$\min_{\left\{ F_{i}\right\} _{i=1}^{T},\Lambda,D(L)}T^{-1}\sum_{t=1}^{T}\left[(I-D(L)L)\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[(I-D(L)L)\mathcal{X}_{t}-\Lambda F_{t}'\right]$$`
+                            which is solveD iteratively and get $\hat{F}_{t}$ and
+                            $\hat{\Lambda}$ and $\hat{D}$.
+
+                        -   Once you have $F_{t}$ you treat first $q$ principal components as
+                            the dynamic factors
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### The DFM and Reduced-Form VARs
+
+                        Take the DFM
+                        `$$\mathcal{X}_{t}=\mathcal{\tilde{\Lambda}}F_{t}+D(L)\mathcal{X}_{t-1}+\zeta_{t}$$`
+                        `$$F_{t}=\Psi(L)F_{t-1}+G\eta_{t}$$` Insert the second into the first
+                        `$$\mathcal{X}_{t}=\mathcal{\tilde{\Lambda}}\Psi(L)F_{t-1}+D(L)\mathcal{X}_{t-1}+\mathcal{\tilde{\Lambda}}G\eta_{t}+\zeta_{t}$$`
+                        and you obtain the FAVAR (with the exclusion restrictions)
+                        `$$\left[\begin{array}{c}
+                        F_{t}\\
+                        \mathcal{X}_{t}
+                        \end{array}\right]=\left[\begin{array}{cc}
+                        \Psi(L) & 0\\
+                        \tilde{\Lambda}\Psi(L) & D(L)
+                        \end{array}\right]\left[\begin{array}{c}
+                        F_{t-1}\\
+                        X_{t-1}
+                        \end{array}\right]+\left[\begin{array}{cc}
+                        G & 0\\
+                        \tilde{\Lambda}G & I
+                        \end{array}\right]\left[\begin{array}{c}
+                        \eta_{t}\\
+                        \zeta_{t}
+                        \end{array}\right]$$`
+                        
+                        
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### The DFM and Reduced-Form VARs
+                        
+                        
+                        In Bernanke, Boivin, Esraz:
+                        `$$\left[\begin{array}{c}
+                        F_{t}\\
+                        \mathcal{X}_{t}
+                        \end{array}\right]=\Phi(L)\left[\begin{array}{c}
+                        F_{t-1}\\
+                        X_{t-1}
+                        \end{array}\right]+\left[\begin{array}{c}
+                        \epsilon_{Ft}\\
+                        \epsilon_{\mathcal{X}t}
+                        \end{array}\right]$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### The DFM and Reduced-Form VARs
+
+                        The innovations and the shocks are related as follows
+                        `$$\left[\begin{array}{c}
+                        \epsilon_{Ft}\\
+                        \epsilon_{\mathcal{X}t}
+                        \end{array}\right]=\left[\begin{array}{cc}
+                        G & 0\\
+                        \tilde{\Lambda}G & I
+                        \end{array}\right]\left[\begin{array}{c}
+                        \eta_{t}\\
+                        \zeta_{t}
+                        \end{array}\right]$$ therefore the variance of the data and the model
+                        are related as follows: $$\Sigma_{\epsilon}=\left[\begin{array}{cc}
+                        G\Sigma_{\eta}G' & G\Sigma_{\eta}G'\tilde{\Lambda}'\\
+                        \tilde{\Lambda}G\Sigma_{\eta}G' & \tilde{\Lambda}G\Sigma_{\eta}G'\tilde{\Lambda}'+\Sigma_{\zeta}
+                        \end{array}\right]$$`
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### IRFs and FEVD
+
+                        The IRF are recovered from the MA `$$\mathcal{X}_{t}=C(L)\eta_{t}+u_{t}$$`
+                        where
+                        $C(L)=\left[I-D(L)L\right]^{-1}\tilde{\Lambda}\left[I-\Psi(L)L\right]^{-1}G$
+                        and $u_{t}=\left[I-D(L)L\right]^{-1}\zeta_{t}$which shows you can
+                        revover the response to all variables of the dataset if you identify
+                        $\eta_{t}$
+
+                        ---
+
+                        <!-- .slide: style="text-align: left;" -->
+
+                        ### Appendix
+
+                        #### Identification
+
+                        Analogously to structural VAR analysis, the dynamic factor structural
+                        shocks are assumed to be linearly related to the reduced form dynamic
+                        factor innovations $\eta_{t}$ $$\eta_{t}^{s}=H\eta_{t}$$ therefore
+                        `$$\mathcal{X}_{t}=C(L)H^{-1}\eta_{t}^{s}+u_{t}$$` where
+                        `$C(L)=\left[I-D(L)L\right]^{-1}\tilde{\Lambda}\left[I-\Psi(L)L\right]^{-1}G$`
+                        as above.
+
+
+                        
+
+                    </script>
+                </section>
+
+            </div>
+		</div>
+
+		<script src="plugin/reveal.js"></script>
+        <script src="plugin/markdown.js"></script>
+        <script src="plugin/highlight.js"></script>
+        <script src="plugin/notes.js"></script>
+        <script src="plugin/plugin.js"></script>
+        <script src="plugin/math.js"></script>
+        <script src="plugin/plugin.js"></script>
+        <script src="plugin/menu.js"></script>
+        <script src="plugin/pdfexport.js"></script>
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+                center: true,
+                touch: true,
+                dependencies:
+                [
+                    { src: 'plugin/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
+                ],
+                math: {
+                    mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                    config: 'TeX-AMS_HTML-full',
+                    // pass other options into `MathJax.Hub.Config()`
+                    TeX: { Macros: { RR: "{\\bf R}" } }
+                    },
+        
+                chalkboard: {
+                    boardmarkerWidth: 3,
+                    chalkWidth: 2.5,
+                    chalkEffect: 1,
+                    src: null,
+                    readOnly: undefined,
+                    toggleChalkboardButton: { left: "90px", bottom: "30px", top: "auto", right: "auto" },
+                    toggleNotesButton: { left: "60px", bottom: "30px", top: "auto", right: "auto" },
+                    transition: 800,
+                    theme: "chalkboard",
+                    background: [ 'rgba(127,127,127,.1)' , path + 'img/blackboard.png' ],
+                    grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+                    eraser: { src: path + 'img/sponge.png', radius: 20},
+                    boardmarkers : [
+                            { color: 'rgba(255,255,255,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto'},
+                            { color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto'},
+                            { color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                            { color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto'},
+                            { color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                            { color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto'},
+                            { color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto'}
+                    ],
+                    chalks: [
+                            { color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto'},
+                            { color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto'},
+                            { color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto'},
+                            { color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto'},
+                            { color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto'},
+                            { color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto'},
+                            { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
+                    ]
+                },
+                
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes,RevealMath, RevealMenu, RevealChalkboard, PdfExport]
+			});
+
+		</script>
+
+	</body>
+</html>
