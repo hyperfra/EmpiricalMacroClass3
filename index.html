@@ -542,7 +542,7 @@
                         `$$N^{-1}\Lambda'\mathcal{X}_{t}=N^{-1}\Lambda'\Lambda F_{t}$$`
                         
                         you get
-                        the factors. But how to find the loadings?
+                        the factors. 
 
                         ---
 
@@ -559,7 +559,7 @@
                         Under our simplified assumptions
                         `$$\hat{F}_{t}=N^{-1}\hat{\Lambda}'\mathcal{X}_{t}$$` and `$\hat{\Lambda}$`
                         is the matrix of eigenvectors of the sample variance matrix of
-                        `$\mathcal{X}_{t}$`. (In more genenral cases like missing values you need to solve the minimization.)
+                        `$\mathcal{X}_{t}$`. (In more genenral cases like missing values you need to solve a minimization.)
 
                         ---
 
@@ -571,7 +571,7 @@
 
                         The estimators of $F_{t}$ and $\Lambda$ solve the minimization
                             problem
-                            `$$\min_{F_{t}}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]$$`
+                            `$$\min_{F_{t},\Lambda }\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]$$`
                             subject to `$N^{-1}\Lambda'\Lambda=I_{r}$`.
                             Expand the terms on the RHS
                             `$$\left(NT\right)^{-1}\sum_{t=1}^{T}\left(\mathcal{X}_{t}'\mathcal{X}_{t}-\mathcal{X}_{t}'\Lambda F_{t}-F_{t}'\Lambda'\mathcal{X}_{t}+F_{t}'\Lambda'\Lambda F_{t}\right)$$`
@@ -588,7 +588,7 @@
                         #### Estimation of Factors: principal components
 
                         Now the gradient with respect to $\Lambda$ of
-                        `$$\min_{\Lambda}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]-S\left[N^{-1}\Lambda'\Lambda-I_{r}\right]$$`
+                        `$$\min_{{F_{t},\Lambda}\left(NT\right)^{-1}\sum_{t=1}^{T}\left[\mathcal{X}_{t}-\Lambda F_{t}\right]'\left[\mathcal{X}_{t}-\Lambda F_{t}\right]-S\left[N^{-1}\Lambda'\Lambda-I_{r}\right]$$`
 
                         concentrate out $F_{t}$ from previous step
                         equivalent to maximize wrt to $\Lambda$
